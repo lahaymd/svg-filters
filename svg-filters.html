@@ -3,25 +3,16 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
-	<script type="text/javascript">
-		window.addEventListener('DOMContentLoaded', function(){
-			console.log('dom parsed')
 
-		function myFunction(evt){
-			console.log(evt, 'hovered')
-			var el = document.querySelector('#hover')
-			el.classList.toggle('filtered')
-		}
-		window.addEventListener('mouseover', myFunction)
-			
-		})
-	</script>
 	<style type="text/css">
-		.filtered {
+		.deicide {
 			filter: url('#deicide');
 		}
-		.sam {
+		.son-of-sam {
 			filter: url('#son-of-sam')
+		}
+		.green-channel{
+			filter: url('#green-channel')
 		}
 	</style>
 </head>
@@ -34,98 +25,94 @@
            		<stop offset="75%" stop-color="black"/>
            		<stop offset="100%" stop-color="red"/>
 			</linearGradient>
+
+			<filter id='green-channel' color-interpolation-filters="sRGB">
+
+				<feComponentTransfer>
+					<feFuncR type='discrete' tableValues='0 1'/>
+					<feFuncG type='discrete' tableValues='1 1'/>
+					<feFuncB type='discrete' tableValues='0 0'/>
+				</feComponentTransfer>	
+          
+                <feColorMatrix  type="hueRotate" values="180" />
+				
+				<feComponentTransfer>
+					<feFuncR type='discrete' tableValues='0 0'/>
+					<feFuncG type='discrete' tableValues='1 0'/>
+					<feFuncB type='discrete' tableValues='0 0'/>
+				</feComponentTransfer>
+
+				<feColorMatrix type='matrix' 
+					values='1 0 0 0 0
+	                       	-1 1 0 0 0 
+	                        0 0 1 0 0
+	                        0 0 0 1 0'/>
+
+     
+			</filter>			
+
 			<filter id='son-of-sam' color-interpolation-filters="sRGB">
+
 				<feComponentTransfer>
 					<feFuncR type='discrete' tableValues='1 1'/>
 					<feFuncG type='discrete' tableValues='0 1'/>
 					<feFuncB type='discrete' tableValues='0 0'/>
-					<!-- <feFuncA type='discrete' tableValues='0 1 '/> -->
 				</feComponentTransfer>	
           
-                         <feColorMatrix 
-        type="hueRotate"
-        values="180" />
+                <feColorMatrix  type="hueRotate" values="180" />
+
 				<feComponentTransfer>
 					<feFuncR type='discrete' tableValues='1 0'/>
 					<feFuncG type='discrete' tableValues='0 0'/>
 					<feFuncB type='discrete' tableValues='0 0'/>
-					<!-- <feFuncA type='discrete' tableValues='0 1 '/> -->
 				</feComponentTransfer>
+
 				<feColorMatrix type='matrix' 
-				values='1 0 0 0 0
-                       	-1 1 0 0 0 
-                        0 0 1 0 0
-                        0 0 0 1 0'/>
-         <!-- <feColorMatrix  type="matrix" values="-1 0 0 0 1 
-                                                0 -1 0 0 1 
-                                                0 0 -1 0 1
-                                                0 0 0 1 0"/> -->
+					values='1 0 0 0 0
+	                       	-1 1 0 0 0 
+	                        0 0 1 0 0
+	                        0 0 0 1 0'/>
+
 			</filter>
-
-
-
-
-
-
-
 
 			<filter id='deicide' color-interpolation-filters="sRGB">
 				<feComponentTransfer>
 					<feFuncR type='discrete' tableValues='1 1'/>
 					<feFuncG type='discrete' tableValues='0 1'/>
 					<feFuncB type='discrete' tableValues='0 0'/>
-					<!-- <feFuncA type='discrete' tableValues='0 1 '/> -->
 				</feComponentTransfer>	
-                        <!-- <feColorMatrix 
-        type="luminanceToAlpha" /> -->
-                       <!--   <feColorMatrix 
-        type="saturate"
-        values="0.2" /> -->
-                         <feColorMatrix 
-        type="hueRotate"
-        values="180" />  
+
+                <feColorMatrix  type="hueRotate" values="180" />  
+
 				<feComponentTransfer>
 					<feFuncR type='discrete' tableValues='1 0'/>
 					<feFuncG type='discrete' tableValues='0 0'/>
 					<feFuncB type='discrete' tableValues='0 0'/>
-					<!-- <feFuncA type='discrete' tableValues='0 1 '/> -->
 				</feComponentTransfer>
-				<feColorMatrix  type="matrix" values="-1 0 0 0 1 
-                                                       0 -1 0 0 0 
-                                                       0 0 -1 0 0
-                                                       0 0 0 1 0"/>
-        <!-- <feColorMatrix 
-        type="hueRotate"
-        values="180" /> -->
-         <!-- <feColorMatrix  type="matrix" values="-1 0 0 0 1 
-                                                0 -1 0 0 1 
-                                                0 0 -1 0 1
-                                                0 0 0 1 0"/> -->
+
+				<feColorMatrix  type="matrix" 
+				   values="-1 0 0 0 1 
+                   0 -1 0 0 0 
+                   0 0 -1 0 0
+                   0 0 0 1 0"/>
+
 			</filter>
 
 			<circle id="c" cy='100' cx='100' r='100'></circle>
 		</defs>
 	</svg>
 
-	<svg width='100%' height='500'>
+	<svg width='100%' height='200'>
 		<use xlink:href='#c' fill='url(#myGradient)'/>
-		<use xlink:href='#c' fill='url(#myGradient)' y='100' filter='url(#comp-transfer)'/>
+		<use xlink:href='#c' fill='url(#myGradient)' x='200' filter='url(#son-of-sam)'/>
+		<use xlink:href='#c' fill='url(#myGradient)' x='400' filter='url(#deicide)'/>
+		<use xlink:href='#c' fill='url(#myGradient)' x='600' filter='url(#green-channel)'/>
 	</svg>
-	<img src="jabber.png" id='hover'>
-	<img src="jabber.png" class='filtered'>
-	<img src="test.gif" class='filtered'>
-	<img src="test.gif" class='sam'>
-	<img src="test.gif" >
-	<img src="zimbabwe.webp">
-	<img src="zimbabwe.webp" class='sam'>
-	<video src='https://youtu.be/vraF07nKWE4' autoplay></video>
-	<video src='https://youtu.be/vraF07nKWE4' autoplay class='filtered'></video>
-	<iframe width="607" height="349" src="https://www.youtube.com/embed/vraF07nKWE4?ecver=1" frameborder="0" gesture="media" allowfullscreen></iframe>
-	<iframe width="607" height="349" src="https://www.youtube.com/embed/vraF07nKWE4?ecver=1" frameborder="0" gesture="media" allowfullscreen class='sam'></iframe>
-	<iframe width="607" height="349" src="https://www.youtube.com/embed/vraF07nKWE4?ecver=1" frameborder="0" gesture="media" allowfullscreen class='filtered'></iframe>
-	<!-- <video src='test.m4v' autoplay></video>
-	<video src='test.m4v' autoplay class='filtered'></video>
-	<video src='test.m4v' autoplay class='sam'></video> -->
+
+	<img src="download.jpeg">
+	<img class='son-of-sam' src="download.jpeg">
+	<img class='deicide' src="download.jpeg">
+	<img class='green-channel' src="download.jpeg">
 	
 </body>
 </html>
