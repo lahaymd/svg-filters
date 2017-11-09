@@ -14,6 +14,33 @@
 		.green-channel{
 			filter: url('#green-channel')
 		}
+		body {
+			
+		    cursor: url('./download.jpeg'), auto;;
+		}
+		.blue {
+			filter: url('#blue');
+		}
+		.family-portrait{
+			width: 40vw;
+		}
+
+		.blueMask{
+			mask-image: url('#blueMask');
+			-webkit-mask-image: url('#blueMask');
+		}
+		#rec {
+			
+			-webkit-mask-image: url('#mask5');
+		}
+		.my-mask {
+  -webkit-mask-image: url(#my-svg-mask);
+  mask-image: url(#my-svg-mask);
+}
+		/*.flex{
+			display: flex;
+			
+		}*/
 	</style>
 </head>
 <body>
@@ -98,7 +125,58 @@
 
 			</filter>
 
+
+			<mask id='blueMask'>
+				<!-- <circle cx='250' cy='50' r='500' /> -->
+				<circle cx='50' cy='50' r='200' fill='black' />
+				
+
+			</mask>
+				 
+				 <mask id="mask5"  >
+    <!-- <rect x="0" y="0"  width="200" height="100%" style="stroke:none; fill: black"/> -->
+    <rect x="200" y="0"  width="100vw" height="555" style="stroke:none; fill: white"/>
+				<circle cx='450' cy='250' r='50' fill='black' />
+
+  </mask>
+
+
+
+						<filter id="blue">
+				
+				<feComponentTransfer in='SourceGraphic' result='r' color-interpolation-filters="sRGB">
+					<feFuncR id='funcR' type='discrete' tableValues=''/>
+					<!-- <feFuncG id='funcG' type='discrete' tableValues=''/> -->
+					<!-- <feFuncB id='funcB' type='discrete' tableValues=''/> -->
+				</feComponentTransfer>
+					<feComponentTransfer in='r' result='b' color-interpolation-filters="sRGB">
+					<!-- <feFuncR id='funcR' type='discrete' tableValues=''/> -->
+					<feFuncG id='funcG' type='discrete' tableValues=''/>
+					<!-- <feFuncB id='funcB' type='discrete' tableValues=''/> -->
+				</feComponentTransfer>	
+				<feComponentTransfer  in='b' color-interpolation-filters="sRGB">
+					<!-- <feFuncR id='funcR' type='discrete' tableValues=''/> -->
+					<!-- <feFuncG id='funcG' type='discrete' tableValues=''/> -->
+					<feFuncB id='funcB' type='discrete' tableValues=''/>
+				</feComponentTransfer>
+
+			</filter>
+
 			<circle id="c" cy='100' cx='100' r='100'></circle>
+
+			<filter id='image'  x = "0%" y = "0%" width = "100%" height = "100%">
+				
+			<feImage  xlink:href='Amelia.jpg'/>
+			</filter>
+			<symbol id='rectangle'>
+				
+			 <rect  x = "0" y = "0" width = "100%" height = "100%" filter = "url(#image)"/>
+			</symbol>
+
+
+			   <filter id = "i1" >
+        <feImage xlink:href = "Amelia.jpg"/>
+    </filter>
 		</defs>
 	</svg>
 
@@ -107,12 +185,108 @@
 		<use xlink:href='#c' fill='url(#myGradient)' x='200' filter='url(#son-of-sam)'/>
 		<use xlink:href='#c' fill='url(#myGradient)' x='400' filter='url(#deicide)'/>
 		<use xlink:href='#c' fill='url(#myGradient)' x='600' filter='url(#green-channel)'/>
+		<use xlink:href='#c' fill='url(#myGradient)' x='800' filter='url(#blue)'/>
 	</svg>
 
 	<img src="download.jpeg">
 	<img class='son-of-sam' src="download.jpeg">
 	<img class='deicide' src="download.jpeg">
 	<img class='green-channel' src="download.jpeg">
+	<div class="flex">
+		<br>
+		
+	<img class='family-portrait' src="p4.jpg">
+	<img class='blue family-portrait' src="p4.jpg">
+	<img class=' family-portrait' src="Amelia.jpg">
+	<img class='blue family-portrait' src="Amelia.jpg">
+	<svg>
+		<use xlink:href='#c' mask='url(#blueMask)'/>
+	</svg>	
+<svg version = "1.1" viewBox = "0 0 1100 400">
+ 
+    <g>
+        <rect id='rec' x = "0" y = "0" width = "100%" height = "100%" filter = "url(#i1)" />
+    </g>
+</svg>
+<svg>
+	<use xlink:href='#rectangle'/>
+</svg>
+	<img class='blueMask family-portrait' src="Amelia.jpg">
+	</div>
+	<script type="text/javascript">
+		window.addEventListener('DOMContentLoaded', function(){
+			console.log('loaded')
+		var funcR = document.querySelector('#funcR');
+		var funcG = document.querySelector('#funcG');
+		var funcB = document.querySelector('#funcB');
+		var a= [];
+		var b= [];
+		var c= [];
 	
+
+		for(var i =0; i <= 255; i++) {
+				if(i >= 200 && i <=210){
+					a.push(1)
+				}else{
+
+				a.push(((i * 1)/255).toFixed(3))
+				}
+		}
+			funcR.setAttribute('tableValues', a.join(' ') )		
+			console.log(a)
+			console.log(a.length)
+
+
+			for(var i =0; i <= 255; i++) {
+				if(a.indexOf(i) == 1){
+					if(i >= 170 && i <= 180){
+					c.push(1)
+					} else{c.push(((i * 1)/255).toFixed(3))}
+				}
+				if(i >= 170 && i <= 180){
+					c.push(1)
+				}else{
+
+				c.push(((i * 1)/255).toFixed(3))
+				}
+		}
+			funcG.setAttribute('tableValues', c.join(' ') )
+			console.log(c)
+
+
+			for(var i =0; i <= 255; i++) {
+				if(i >= 140 && i <=150){
+					b.push(1)
+				}else{
+
+				b.push(((i * 1)/255).toFixed(3))
+				}
+		}
+			funcB.setAttribute('tableValues', b.join(' ') )		
+			console.log(b)
+
+			console.log('loaded after')
+
+		console.log('a',a)
+		a.forEach(function(item,index,array){
+			if(item == 1 ) {console.log(index +'equal')}else{console.log(index)}
+		})
+	})
+	</script>
+<svg width="400px" height="600px" viewBox="0 0 400 600">
+  <defs>
+    <mask id="my-svg-mask2">
+      <rect id="Rectangle" fill="#FFF" x="0" y="0" width="400" height="600"></rect>
+      <circle id="Oval" fill="black" cx="67.5" cy="51.5" r="67.5"></circle>
+      <circle id="Oval" fill="black" cx="296.597656" cy="118.597656" r="56.5976562"></circle>
+      <circle id="Oval" fill="black" cx="53.4648437" cy="256.464844" r="81.4648437"></circle>
+      <circle id="Oval" fill="black" cx="239.587891" cy="313.587891" r="70.5878906"></circle>
+      <circle id="Oval" fill="black" cx="366.597656" cy="562.597656" r="56.5976562"></circle>
+      <circle id="Oval" fill="black" cx="93.203125" cy="486.203125" r="76.203125"></circle>
+    </mask>
+  </defs>
+  <rect x="0" y="0" width="400" height="600" fill=blue />
+  <image preserveAspectRatio='none' mask="url(#my-svg-mask2)" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="Amelia.jpg" width="400" height="600"></image>
+</svg>
 </body>
 </html>
