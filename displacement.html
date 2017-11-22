@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>feDisplacement</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
+<style type="text/css">
+	iframe {
+		filter: url(#deicide)
+	}
+
+	#filter {
+		filter: url(#son-of-jake-inverted)
+	}
+</style>
+</head>
+<body>
+
+	<iframe width="1112" height="480" src="https://www.youtube.com/embed/xQCaWLF2gfs?ecver=1" frameborder="0" gesture="media" allowfullscreen></iframe>
+
+	<video src='IMG_2709.webm'></video>
+	<video id='filter' src='IMG_2709.webm'></video>
+
+<svg width=0 height=0 >
+	<defs>
+
+	<filter id='son-of-jake' color-interpolation-filters="sRGB">
+
+				<feComponentTransfer>
+					<feFuncR type='discrete' tableValues='1 1'/>
+					<feFuncG type='discrete' tableValues='0 1'/>
+					<feFuncB type='discrete' tableValues='0 0'/>
+				</feComponentTransfer>	
+          
+                <feColorMatrix  type="hueRotate" values="180" />
+
+				<feComponentTransfer>
+					<feFuncR type='discrete' tableValues='0 1'/>
+					<feFuncG type='discrete' tableValues='0 1'/>
+					<feFuncB type='discrete' tableValues='0 1'/>
+				</feComponentTransfer>
+
+				<feConvolveMatrix   preserveAlpha="true" kernelMatrix="-1 -1 -1
+-1  8 -1
+-1 -1 -1"/>
+
+<feMorphology operator="erode" radius=".6"></feMorphology>
+
+
+			</filter>
+
+				<filter id='son-of-jake-inverted' color-interpolation-filters="sRGB">
+
+				<feComponentTransfer>
+					<feFuncR type='discrete' tableValues='0 1'/>
+					<feFuncG type='discrete' tableValues='0 1'/>
+					<feFuncB type='discrete' tableValues='0 1'/>
+				</feComponentTransfer>	
+          
+                <feColorMatrix  type="hueRotate" values="180" />
+
+				<feComponentTransfer>
+					<feFuncR type='discrete' tableValues='1 0'/>
+					<feFuncG type='discrete' tableValues='1 0'/>
+					<feFuncB type='discrete' tableValues='1 0'/>
+				</feComponentTransfer>
+
+				<feConvolveMatrix   preserveAlpha="true" kernelMatrix="-1 -1 -1
+-1  8 -1
+-1 -1 -1"/>
+
+<feComponentTransfer>
+					<feFuncR type='discrete' tableValues='1 0'/>
+					<feFuncG type='discrete' tableValues='1 0'/>
+					<feFuncB type='discrete' tableValues='1 0'/>
+				</feComponentTransfer>
+
+				<!-- <feColorMatrix type='matrix' 
+					values='1 0 0 0 0
+	                       	-1 1 0 0 0 
+	                        0 0 1 0 0
+	                        0 0 0 1 0'/> -->
+                <!-- <feColorMatrix  type="hueRotate" values="180" /> -->
+				
+
+			</filter>
+
+
+			<circle id='myInGraphic' cx=150 cy=100 r=50  fill='white'/>
+	<image preserveAspectRatio='none'  id='img' width=500 height=300  href='https://media3.giphy.com/media/Kan1AHHJmMRYA/200.webp#0-grid1'  filter='url(#son-of-jake)'/>
+		<filter id='myFilter'>
+			<!-- <feImage id='mycirc'   xlink:href='#myInGraphic' result='displace'/> -->
+			<feImage id='myimg'   xlink:href='#img' result='displace'/>
+			
+			<feDisplacementMap
+				scale='20'
+				xChannelSelector='R'
+				yChannelSelector='R'
+				in='SourceGraphic' in2='displace' result='displaced'
+				/>
+
+				<feComposite  operator='in' in2='SourceGraphic' in='displaced'></feComposite>
+		</filter>
+
+
+		<mask id="mask9">
+		<image  xlink:href='https://media3.giphy.com/media/Kan1AHHJmMRYA/200.webp#0-grid1' style="width:500; height:300;" filter='url(#son-of-jake-inverted)'  />
+				<!-- <rect width=500 height=300 fill='url(deicide)'/> -->
+				<!-- <circle cx=250 cy=150 r=100 fill='white'/> -->
+			</mask>	
+
+
+      <filter id='son-of-sam' color-interpolation-filters="sRGB">
+        <feComponentTransfer>
+          <feFuncR type='discrete' tableValues='1 .5 .5 .5 .5 .5  1'/>
+          <feFuncG type='discrete' tableValues='0  1'/>
+          <feFuncB type='discrete' tableValues='0 0'/>
+        </feComponentTransfer>  
+
+                <feColorMatrix  type="hueRotate" values="180" />  
+
+        <feComponentTransfer>
+          <feFuncR type='discrete' tableValues='1 0'/>
+          <feFuncG type='discrete' tableValues='0 0'/>
+          <feFuncB type='discrete' tableValues='0 0'/>
+        </feComponentTransfer>
+
+        <feColorMatrix  type="matrix" 
+           values="-1 0 0 0 1 
+                   0 -1 0 0 0 
+                   0 0 -1 0 0
+                   0 0 0 1 0"/>
+
+      </filter>
+
+        <filter id='deicide' color-interpolation-filters="sRGB">
+
+        <feComponentTransfer>
+          <feFuncR type='discrete' tableValues='1 1'/>
+          <feFuncG type='discrete' tableValues='0 1'/>
+          <feFuncB type='discrete' tableValues='0 0'/>
+        </feComponentTransfer>  
+          
+                <feColorMatrix  type="hueRotate" values="180" />
+
+        <feComponentTransfer>
+          <feFuncR type='discrete' tableValues='1 0'/>
+          <feFuncG type='discrete' tableValues='0 0'/>
+          <feFuncB type='discrete' tableValues='0 0'/>
+        </feComponentTransfer>
+
+        <feColorMatrix type='matrix' 
+          values='1 0 0 0 0
+                          -1 1 0 0 0 
+                          0 0 1 0 0
+                          0 0 0 1 0'/>
+
+                          				<feConvolveMatrix order="3,3"  targetY='2'  preserveAlpha="true" kernelMatrix="-1 -1 -1
+-1  8 -1
+-1 -1 -1" />
+
+<feMorphology operator="dilate" radius="6"></feMorphology>
+
+
+      </filter>
+	</defs>
+</svg>
+
+<svg viewbox='0 0 960 560'>
+<!-- <image width=300 height=168 x=200 y=0 href="https://media1.giphy.com/media/3ohs7Y2y8P8USFR2MM/200w.webp#14-grid1"/> -->
+	<image  width=500 height=300  href='download.jpeg' filter='url(#myFilter)'/>
+</svg>
+<svg width=500 height=300 >
+	<image  width=500 height=300  href='https://media2.giphy.com/media/l378gxtNQaXcsqY7K/200w.webp#7-grid1' filter='url(#son-of-jake)'/>
+	
+</svg><svg width=500 height=300 >
+	<image  width=500 height=300  href='https://media3.giphy.com/media/Kan1AHHJmMRYA/200.webp#0-grid1' filter='url(#son-of-jake-inverted)'/>
+	
+</svg>
+<svg width=500 height=300 >
+	<image  width=500 height=300  href='https://media3.giphy.com/media/Kan1AHHJmMRYA/200.webp#0-grid1' mask='url(#mask9)'/>
+
+</svg>
+
+<svg width=500 height=300 >
+	<image  width=500 height=300  href='https://media3.giphy.com/media/Kan1AHHJmMRYA/200.webp#0-grid1' filter='url(#son-of-jake)'/>
+
+</svg>
+
+<svg width=500 height=300 >
+	<image  width=500 height=300  href='https://media3.giphy.com/media/Kan1AHHJmMRYA/200.webp#0-grid1' filter='url(#son-of-sam)'/>
+
+</svg>
+<svg width=500 height=300 >
+	<image  width=500 height=300  href='https://media3.giphy.com/media/Kan1AHHJmMRYA/200.webp#0-grid1' filter='url(#deicide)'/>
+
+</svg>
+
+<script type="text/javascript">
+	var image = document.querySelector('#img');	
+	console.log(image)
+	console.log(TweenMax)
+
+	// TweenMax.to(image, 22, {x:300})
+</script>
+	
+</body>
+</html>

@@ -118,6 +118,7 @@
 	                        0 0 0 1 0'/> -->
 
 			</filter>	
+			
 			<filter id='son-of-jake-blue' color-interpolation-filters="sRGB">
 
 				<feComponentTransfer>
@@ -258,8 +259,18 @@
 				<!-- <rect width=500 height=300 fill='url(deicide)'/> -->
 				<!-- <circle cx=250 cy=150 r=100 fill='white'/> -->
 			</mask>			
-
 			<mask id="mask8">
+		<image  xlink:href='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAy37Nu5guD8uAEGM6w52KJIZHV_WxJM5HznnWZt3-4emSuhOX6w' style="width:500; height:300;" filter='url(#son-of-jake)'  />
+				<!-- <rect width=500 height=300 fill='url(deicide)'/> -->
+				<!-- <circle cx=250 cy=150 r=100 fill='white'/> -->
+			</mask>			
+			<mask id="mask9">
+		<image  xlink:href='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAy37Nu5guD8uAEGM6w52KJIZHV_WxJM5HznnWZt3-4emSuhOX6w' style="width:500; height:300;" filter='url(#son-of-jake-inverted)'  />
+				<!-- <rect width=500 height=300 fill='url(deicide)'/> -->
+				<!-- <circle cx=250 cy=150 r=100 fill='white'/> -->
+			</mask>			
+
+			<mask id="mask8.5">
 		<!-- <image  xlink:href='Amelia.jpg' style="width:500; height:300;" filter='url(#son-of-jake-inverted)'  /> -->
 				<rect width=500 height=300 />
 				<circle cx=250 cy=150 r=100 fill='white'/>
@@ -267,11 +278,11 @@
 			</mask>			
 
 			<mask id="mask9">
-		<image  xlink:href='Amelia.jpg' style="width:500; height:300;" filter='url(#son-of-jake)'  />
-		<!-- <image  xlink:href='Amelia.jpg' style="width:500; height:300;" filter='url(#son-of-jake-inverted)'  /> -->
+		<image class='translateMe'  xlink:href='Amelia.jpg' style="width:500; height:300;" filter='url(#son-of-jake-green)'/>
+		<image class='translateMe'  xlink:href='Amelia.jpg' style="width:500; height:300;" filter='url(#son-of-jake)'  />
 		<!-- <image  xlink:href='Amelia.jpg' style="width:500; height:300;" filter='url(#son-of-jake-inverted)'  /> -->
 				<!-- <rect width=500 height=300 fill='url(deicide)'/> -->
-				<!-- <circle cx=350 cy=150 r=100 fill='white'/> -->
+				<circle cx=350 cy=150 r=100 fill='white'/>
 			</mask>
 		<image id='my-use' xlink:href='Amelia.jpg' style="width:500; height:300;" mask='url(#mask2)' />
 		<image id='my-use2' xlink:href='Amelia.jpg' style="width:500; height:300;" mask='url(#mask3)' />
@@ -288,7 +299,7 @@
 		<!-- <image xlink:href='Amelia.jpg' style="width:500; height:300;" mask='url(#mask1)' /> -->
 
 	</svg>
-	<div class='flex'>
+	<!-- <div class='flex'> -->
 		
 		<svg width=500 height=300 >
 			<image xlink:href='Amelia.jpg' style="width:500; height:300;"/>	
@@ -310,7 +321,12 @@
 		<svg width=500 height=300 >
 			<use xlink:href='#my-use'/>
 		</svg>
-	</div>
+	<!-- </div> -->
+	<svg width=500 height=300 >
+		<!-- <rect width=500 height=300 fill='' mask='url(#mask9)'/> -->
+		<image  xlink:href='Amelia.jpg' style="width:500; height:300;" mask='url(#mask9)'/>	
+		<!-- <image class='fade10' xlink:href='Amelia.jpg' style="width:500; height:300;" mask='url(#mask7)'/>	 -->
+	</svg>
 	<svg width=500 height=300 >
 		<use xlink:href='#my-use2'/>
 	</svg>
@@ -339,6 +355,11 @@
 		<image id='my-use3' xlink:href='download.jpeg' style="width:500; height:300;" mask='url(#mask4)' />
 		<image id='hover' id='my-use4' xlink:href='download.jpeg' style="width:500; height:300;" mask='url(#mask7)' />	
 		<!-- <image xlink:href='Amelia.jpg' style="width:500; height:300;" filter='url(#son-of-jake-inverted)'/>	 -->
+	</svg>	
+	<svg width=1000 height=500 >
+		<image id='my-use3' xlink:href='download.jpeg' style="width:500; height:300;" mask='url(#mask8)' />
+		<image id='h1' id='my-use4' xlink:href='download.jpeg' style="width:500; height:300;" mask='url(#mask9)' />	
+		<!-- <image xlink:href='Amelia.jpg' style="width:500; height:300;" filter='url(#son-of-jake-inverted)'/>	 -->
 	</svg>
 	<svg height=1000 width=1000 >
 		<rect height=300 width=500 fill='url(#pattern)' />
@@ -355,6 +376,32 @@
 	</svg>
 	
 	<!-- <img src="https://media.giphy.com/media/e2tSgEk1k8Baw/giphy.gif"> -->
+	<script type="text/javascript">
+		
+		var h1 = document.querySelector("#h1")
+
+var options = {
+iterations: Infinity,
+iterationStart: 0,
+delay: 500,
+endDelay: 0,
+direction: 'alternate',
+duration: 3000,
+fill: 'forwards',
+easing: 'ease-out',
+}
+
+var keyframes = [
+{ transform: 'translateX(500px) scaleY(2.5) scaleX(.2)', transformOrigin: '50% 0', filter: 'blur(40px)', opacity: 0 },
+{ transform: 'translateX(0) scaleY(1) scaleX(1)',
+transformOrigin: '50% 50%',
+ filter: 'blur(0)',
+ opacity: 1 }
+]
+
+h1.animate(keyframes, options)
+
+	</script>
 	
 </body>
 </html>

@@ -1,0 +1,35 @@
+	<svg  viewBox='0 0 600 600'  version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+	 >
+	 <style type="text/css">
+	 	svg * {
+            transition: stroke 1s ease-out;
+        }
+
+   @media all and (max-width: 600px) {
+            #circ { 
+                stroke: orange; 
+            }
+            
+        }
+#text {
+	transform: rotate(5deg);
+}
+
+	 </style>
+		<defs>
+			
+		<filter id='feImage'>
+			 
+			<feImage xlink:href='fe-image.jpg' result='fe' width='100' height='150 '></feImage>
+			<feTile in='fe' result='tile'></feTile>
+			<feComposite in='tile' in2='SourceGraphic' operator='xor'></feComposite>
+			<!-- <feMerge>
+				<feMergeNode in='tile'></feMergeNode>
+				<feMergeNode in='SourceGraphic'></feMergeNode>
+			</feMerge> -->
+		</filter>
+		</defs>
+
+		<circle id='circ'  r='200' cx='300' cy='300' filter='url(#feImage)' stroke='purple' stroke-width='10'></circle>
+		<text id='text' x='50%' y='50%' fill='green' style="text-anchor: middle" stroke='yellow' font-size='200px' dominant-baseline='middle'>svg</text>
+	</svg>
